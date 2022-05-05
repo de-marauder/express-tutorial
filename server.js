@@ -2,6 +2,7 @@ if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
 }
 const express = require('express');
+const bodyParser = require('body-parser')
 const expressLayouts = require('express-ejs-layouts')
 const indexRoute = require('./Routes')
 const authorRoute = require('./Routes/authors.js')
@@ -21,6 +22,7 @@ app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
 app.set('layout', 'layouts/layout')
 
+app.use(bodyParser.urlencoded({extended: false, limit: '10mb'}))
 app.use(expressLayouts)
 app.use(express.static('public'))
 
