@@ -1,11 +1,15 @@
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
 }
+
 const express = require('express');
 const bodyParser = require('body-parser')
+
 const expressLayouts = require('express-ejs-layouts')
 const indexRoute = require('./Routes')
 const authorRoute = require('./Routes/authors.js')
+const bookRoute = require('./Routes/books.js')
+
 
 const app = express()
 
@@ -30,6 +34,7 @@ const port = process.env.PORT || 5000
 
 app.use('/', indexRoute)
 app.use('/authors', authorRoute)
+app.use('/books', bookRoute)
 
 app.get('/*', (req, res)=>{
     res.send("Not Found")

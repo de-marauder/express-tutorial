@@ -1,0 +1,47 @@
+<h2>Books page</h2>
+
+<h3>Search books</h3>
+
+<form action="/books" method="GET">
+  <label for="title">Title</label>
+  <input name="title" type="text" value="<%=searchOptions.title%>" /><br />
+  <label for="author">Author</label>
+  <select name="author" type="text">
+      <option label="select Author">
+    <% authors.forEach(author => { %> <% if (searchOptions.author === author.id)
+    { %>
+    <option selected label="<%= author.name %>" value="<%= author.id %>">
+      <% } else { %>
+    </option>
+
+    <option label="<%= author.name %>" value="<%= author.id %>">
+      <% } %> <% }) %>
+    </option></select
+  ><br />
+
+  <label for="publishedAfter">Published After</label>
+  <input
+    name="publishedAfter"
+    type="date"
+    value="<%=searchOptions.publishedAfter  %>"
+  /><br />
+  <label for="publishedBefore">Published Before</label>
+  <input
+    name="publishedBefore"
+    type="date"
+    value="<%=searchOptions.publishedBefore%>"
+  />
+  <br />
+  <br />
+  <button type="submit">Search</button>
+</form>
+<br />
+<% books.forEach(book => { %>
+<span>
+  <img height="150" width="100" src="<%= book._cover %>" />
+  <p>Title: <%= book.title %></p>
+  <p>Description: <%= book.description %></p>
+  
+  <p>Author: <%= book.author %></p>
+</span>
+<% }) %>
