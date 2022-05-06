@@ -1,7 +1,6 @@
-const path = require("path");
+// const path = require("path");
 const mongoose = require("mongoose");
 
-const bookBasePath = "/uploads/coverImages";
 
 const bookSchema = new mongoose.Schema(
   {
@@ -13,6 +12,10 @@ const bookSchema = new mongoose.Schema(
       type: String,
     },
     cover: {
+      type: Buffer,
+      required: true,
+    },
+    coverType: {
       type: String,
       required: true,
     },
@@ -20,11 +23,6 @@ const bookSchema = new mongoose.Schema(
       type: Date,
       required: true,
     },
-    // createdAt: {
-    //     type: Date,
-    //     required: true,
-    //     default: Date.now,
-    // },
     pageCount: {
       type: Number,
       required: true,
@@ -40,11 +38,11 @@ const bookSchema = new mongoose.Schema(
   }
 );
 
-bookSchema.virtual("_cover").get(function () {
-  if (this.cover) {
-    return path.join("/", bookBasePath, this.cover);
-  }
-});
+
+bookSchema.virtual("cover_src").get(function() {
+    if (this.cover && this.coverType) {
+        return `data:${this.coverType};charset=utf-8;base64,${this.cover.toString('base64')}`
+    }
+})
 
 module.exports = mongoose.model("Book", bookSchema);
-module.exports.bookBasePath = bookBasePath;

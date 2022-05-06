@@ -1,6 +1,6 @@
 <h2>Create new Book</h2>
 
-<form action="/books/new" method="POST" enctype="multipart/form-data">
+<form action="/books/new" method="POST">
   <label for="title">Title</label>
   <input name="title" type="text" value="<%= book.title %>" /><br />
   <label for="publishDate">Publish date</label>
@@ -10,7 +10,7 @@
     value="<%= book.publishDate == null ? '' : book.publishDate.toISOString().split('T')[0]  %>"
   /><br />
   <label for="cover">Cover image</label>
-  <input name="cover" type="file" /><br />
+  <input class="filepond" name="cover" type="file" /><br />
   <label for="pageCount">Page count</label>
   <input
     name="pageCount"

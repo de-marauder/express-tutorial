@@ -36,12 +36,12 @@
   <button type="submit">Search</button>
 </form>
 <br />
-<% books.forEach(book => { %>
+<% books.forEach((book, i)=> { %>
 <span>
-  <img height="150" width="100" src="<%= book._cover %>" />
+  <img height="150" width="100" src="<%=book.cover_src%>" />
   <p>Title: <%= book.title %></p>
+  <p>Author: <%= bookAuthors[i].name %></p>
   <p>Description: <%= book.description %></p>
+  </span>
+  <% }) %>
   
-  <p>Author: <%= book.author %></p>
-</span>
-<% }) %>

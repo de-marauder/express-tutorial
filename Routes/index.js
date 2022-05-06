@@ -11,16 +11,15 @@ router.get('/', async (req, res)=>{
     const authors = await Author.find({});
     let books = await Book.find().sort({createdAt: 'desc'}).limit(10);
     
-    books = await Promise.all(books.map(async (book, i)=>{
+    const bookAuthors = await Promise.all(books.map(async (book, i)=>{
       const author = await Author.findOne({_id: book.author})
       
       return {
-        ...book._doc,
-        author: author.name
+        name: author.name
       }
     }))
 
-    res.render("index", {authors: authors, books: books});
+    res.render("index", {authors: authors, bookAuthors: bookAuthors, books: books});
   } catch (error) {
     console.error(error)
     res.redirect('books')
