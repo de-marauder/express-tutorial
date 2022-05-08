@@ -1,0 +1,8 @@
+<div>
+  <h2><%- author.name %></h2>
+  <a href="/authors/author/<%= author._id %>/edit">edit</a>
+  <a href="/authors/author/<%= author._id %>">show</a>
+  <form action="/authors/author/<%= author._id %>?_method=DELETE" method="POST" >
+    <button type="submit">delete</button>
+  </form>
+</div>

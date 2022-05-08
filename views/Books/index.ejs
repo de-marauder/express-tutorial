@@ -7,9 +7,11 @@
   <input name="title" type="text" value="<%=searchOptions.title%>" /><br />
   <label for="author">Author</label>
   <select name="author" type="text">
-      <option label="select Author">
-    <% authors.forEach(author => { %> <% if (searchOptions.author === author.id)
-    { %>
+    <option label="select Author">
+      <% authors.forEach(author => { %> <% if (searchOptions.author ===
+      author.id) { %>
+    </option>
+
     <option selected label="<%= author.name %>" value="<%= author.id %>">
       <% } else { %>
     </option>
@@ -36,12 +38,6 @@
   <button type="submit">Search</button>
 </form>
 <br />
-<% books.forEach((book, i)=> { %>
-<span>
-  <img height="150" width="100" src="<%=book.cover_src%>" />
-  <p>Title: <%= book.title %></p>
-  <p>Author: <%= bookAuthors[i].name %></p>
-  <p>Description: <%= book.description %></p>
-  </span>
-  <% }) %>
-  
+<% books.forEach((book, i)=> { %> 
+  <%- include('../partials/book', {book: book, i: i}) %> 
+<% }) %>

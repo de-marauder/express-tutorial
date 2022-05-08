@@ -1,0 +1,17 @@
+<img height="150" width="100" src="<%=book.cover_src%>" />
+<div>
+  <p>Title: <%= book.title %></p>
+  <p>Description: <%= book.description %></p>
+  <p>Author: 
+      <% if (locals.bookAuthor) { %>
+        <%= bookAuthor.name %>
+      <% } else if (locals.bookAuthors) { %>
+      <%= bookAuthors[i].name %>
+      <% } %> 
+    </p>
+  <a href="/books/book/<%= book._id %>/edit">edit</a>
+  <a href="/books/book/<%= book._id %>">show</a>
+  <form action="/books/book/<%= book._id %>?_method=DELETE" method="POST" >
+    <button type="submit">delete</button>
+  </form>
+</div><br>

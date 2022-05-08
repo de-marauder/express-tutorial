@@ -2,20 +2,8 @@ const express = require("express");
 
 const router = express.Router();
 
-// const path = require("path");
-// const fs = require('fs')
-// const multer = require("multer");
-// const bookPath = require("../models/book").bookBasePath;
-
-// const coverPath = path.join("public", bookPath);
-
 const imgMimeTypes = ["image/jpeg", "image/png", "image/gif"];
-// const upload = multer({
-//   dest: coverPath,
-//   fileFilter: (req, file, callback) => {
-//     callback(null, imgMimeTypes.includes(file.mimetype));
-//   },
-// });
+
 
 const Author = require("../models/author");
 const Book = require("../models/book");
@@ -47,7 +35,7 @@ router.get("/", async (req, res) => {
       const author = await Author.findOne({_id: book.author})
       
       return {
-        name: author.name
+        name: author?.name
       }
     }))
 
@@ -64,7 +52,6 @@ router.get("/new", async (req, res) => {
   renderNewPage(res, new Book());
 });
 
-// router.post("/new", upload.single("cover"), async (req, res) => { //to be used with multer library when persisting files on a server is not an issue
 router.post("/new", async (req, res) => {
   console.log("post book route hit");
 
@@ -80,15 +67,15 @@ router.post("/new", async (req, res) => {
   saveCover(book, req.body.cover)
   try {
     const newBook = await book.save();
-    res.redirect("/books");
+    res.redirect(`book/${newBook._id}`);
   } catch (error) {
     console.log(`new post ERROR: ${error}`);
-    // if (book.cover) {
-    //   removeBook(book.cover)
-    // }
+   
     renderNewPage(res, book, true);
   }
 });
+
+
 
 function saveCover(book, coverEncoded) {
   if (!coverEncoded) return
@@ -115,12 +102,5 @@ async function renderNewPage(res, book, hasError = false) {
     res.redirect("/");
   }
 }
-
-// // Use when you need to remove file references using multer
-// function removeBook(filename) {
-//   fs.unlink(path.join(coverPath, filename), (err)=>{
-//     if (err) console.error(err)
-//   })
-// }
 
 module.exports = router;

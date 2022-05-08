@@ -3,7 +3,5 @@
 </h3>
 
 <% authors.forEach(author => { %>
-    <div>
-        <%= author.name %> 
-    </div>
+    <%- include('../partials/author', {author: author}) %> 
 <% }) %>

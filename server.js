@@ -4,16 +4,19 @@ if (process.env.NODE_ENV !== 'production') {
 
 const express = require('express');
 const bodyParser = require('body-parser')
+const methodOverride = require('method-override');
 
 const expressLayouts = require('express-ejs-layouts')
 const indexRoute = require('./Routes')
-const authorRoute = require('./Routes/authors.js')
-const bookRoute = require('./Routes/books.js')
+const authorsRoute = require('./Routes/authors.js')
+const authorRoute = require('./Routes/author.js')
+const booksRoute = require('./Routes/books.js')
+const bookRoute = require('./Routes/book.js')
 
 
 const app = express()
 
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 console.log('start connecting to database...')
 mongoose.connect(process.env.DATABASE_URL)
 console.log('connected to database...')
@@ -29,12 +32,15 @@ app.set('layout', 'layouts/layout')
 app.use(bodyParser.urlencoded({extended: false, limit: '10mb'}))
 app.use(expressLayouts)
 app.use(express.static('public'))
+app.use(methodOverride('_method'))
 
 const port = process.env.PORT || 5000
 
 app.use('/', indexRoute)
-app.use('/authors', authorRoute)
-app.use('/books', bookRoute)
+app.use('/authors', authorsRoute)
+app.use('/authors/author', authorRoute)
+app.use('/books', booksRoute)
+app.use('/books/book', bookRoute)
 
 app.get('/*', (req, res)=>{
     res.send("Not Found")
