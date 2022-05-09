@@ -29,10 +29,9 @@ body {
 
 .content-container {
   display: flex;
+  flex-flow: column;
   justify-content: center;
-  align-items: center;
   margin: 0.5rem;
-  width: 90%;
 }
 
 a {

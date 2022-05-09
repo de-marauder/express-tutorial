@@ -64,9 +64,12 @@
     <%- include('../partials/header.ejs') %>
     <hr />
     <div class="content-container">
-      <div><%-include('../partials/error.ejs') %> <%- body %></div>
+        <%-include('../partials/error.ejs') %> 
+        <%- body %>
     </div>
-    <%-include('../partials/footer.ejs') %>
+    <div>
+      <%-include('../partials/footer.ejs') %>
+    </div>
   </body>
 
   <script defer src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
