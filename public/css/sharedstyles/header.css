@@ -29,3 +29,10 @@ header ul li, footer ul li {
     margin-left: 1rem
 }
 
+footer > p a.name {
+  color: var(--text-color-light);
+}
+footer > p a.name:hover {
+  color: var(--text-color);
+  text-decoration: underline;
+}
