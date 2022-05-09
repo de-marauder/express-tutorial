@@ -1,0 +1,31 @@
+@import url(./sharedstyles/variables.css);
+@import url(./sharedstyles/header.css);
+@import url(./sharedstyles/book.css);
+@import url(./sharedstyles/buttons.css);
+@import url(./sharedstyles/forms.css);
+@import url(./sharedstyles/authors.css);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}
+
+body {
+  background: linear-gradient(
+    to right,
+    var(--background-color-dark),
+    var(--background-color-light)
+  );
+  color: var(--text-color);
+  font-family: sans-serif;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 1rem
+}
+
+.content-container {
+    margin: 0.5rem;
+}

@@ -5,7 +5,6 @@ const Author = require("../models/author");
 
 const imgMimeTypes = ["image/jpeg", "image/png", "image/gif"];
 
-
 const router = express.Router();
 
 router.get("/:id", async (req, res) => {
@@ -25,33 +24,45 @@ router.get("/:id/edit", async (req, res) => {
 router.put("/:id", async (req, res) => {
   let book, oldbook, bookAuthor;
   const newBook = {
-      title: req.body.title,
-      publishDate: req.body.publishDate,
-      pageCount: req.body.pageCount ,
-      author: req.body.author,
-      description: req.body.description,
-  }
-  saveCover(newBook, req.body.cover)
-  try{
-      oldbook = await Book.findById(req.params.id)
-      oldbookAuthor = await Author.findById(oldbook.author)
-    } catch (error){
-      res.render("Books/book", { id: req.params.id, book: book, bookAuthor: bookAuthor, errorMessage: "Could not find book" });
-    }
-    try {
-      book = {
-        ...oldbook._doc,
-        ...newBook
-      }
-      console.log('book: ', book)
-      console.log('book.cover: ', book.author)
-      await Book.updateOne({_id: req.params.id}, book)
-      book = await Book.findById(req.params.id)
-      bookAuthor = await Author.findById(book.author)
-      res.render("Books/book", { id: book._id, book: book, bookAuthor: bookAuthor});
+    title: req.body.title,
+    publishDate: new Date(req.body.publishDate),
+    pageCount: req.body.pageCount,
+    author: req.body.author,
+    description: req.body.description,
+  };
+  saveCover(newBook, req.body.cover);
+  try {
+    oldbook = await Book.findById(req.params.id);
+    oldbookAuthor = await Author.findById(oldbook.author);
   } catch (error) {
-      console.error(error)
-      res.render("Books/book", { id: req.params.id, book: oldbook, bookAuthor: oldbookAuthor, errorMessage: "Could not update book" });
+    res.render("Books/book", {
+      id: req.params.id,
+      book: book,
+      bookAuthor: bookAuthor,
+      errorMessage: "Could not find book",
+    });
+  }
+  try {
+    book = {
+      ...oldbook._doc,
+      ...newBook,
+    };
+    await Book.updateOne({ _id: req.params.id }, book);
+    book = await Book.findById(req.params.id);
+    bookAuthor = await Author.findById(book.author);
+    res.render("Books/book", {
+      id: book._id,
+      book: book,
+      bookAuthor: bookAuthor,
+    });
+  } catch (error) {
+    console.error(error);
+    res.render("Books/book", {
+      id: req.params.id,
+      book: oldbook,
+      bookAuthor: oldbookAuthor,
+      errorMessage: "Could not update book",
+    });
   }
 });
 
@@ -70,11 +81,11 @@ router.delete("/:id", async (req, res) => {
 });
 
 function saveCover(book, coverEncoded) {
-  if (!coverEncoded) return
-  const cover = JSON.parse(coverEncoded)
+  if (!coverEncoded) return;
+  const cover = JSON.parse(coverEncoded);
   if (cover !== null && imgMimeTypes.includes(cover.type)) {
-    book.cover = new Buffer.from(cover.data, "base64")
-    book.coverType = cover.type
+    book.cover = new Buffer.from(cover.data, "base64");
+    book.coverType = cover.type;
   }
 }
 

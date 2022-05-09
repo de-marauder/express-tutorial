@@ -1,0 +1,11 @@
+<div class="grid-item large-book">
+  <div>
+    <a href="/books/book/<%= book._id %>">
+      <img src="<%= book.cover_src%>" />
+    </a>
+  </div>
+  <div class="book-min-details">
+    <p><strong><%= book.title %></strong></p>
+    <p><%= bookAuthors[id].name %></p>
+  </div>
+</div>

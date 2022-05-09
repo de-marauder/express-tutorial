@@ -1,11 +1,6 @@
-<h2>Recently Added</h2>
+<h2 class="header-title">Recently Added</h2>
+<div class="book-grid">
+  <% books.forEach((book, id) => { %>
+<%- include('./partials/min-det-book', {book: book, id: id, bookAuthors: bookAuthors}) %> 
+<% }) %> 
 
-<% books.forEach((book, id) => { %>
-<span>
-    <% (id + 1) %> 
-  <img height="150" width="100" src="<%= book.cover_src%>" />
-  <p>Title: <%= book.title %></p>
-  <p>Description: <%= book.description %></p>
-  <p>Author: <%= bookAuthors[id].name %></p>
-</span>
-<% }) %>

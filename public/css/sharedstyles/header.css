@@ -1,0 +1,28 @@
+.nav-header-title {
+  font-size: 2rem;
+}
+header {
+    margin: 1rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+header a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+header a:hover {
+  color: white;
+}
+
+header ul {
+    display: flex;
+}
+header ul li {
+    list-style: none;
+}
+.nav-item a {
+    margin-left: 1rem
+}
+
