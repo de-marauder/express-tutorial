@@ -4,6 +4,7 @@
     --color-danger-light: hsl(calc(var(--background-hue) - var(--color-offset)), 100%, 50%);
 }
 .btn {
+    font-size: 1rem;
     padding: 0.5rem 1rem;
     font-family: sans-serif;
     font-weight: bold;
@@ -28,5 +29,6 @@
 }
 
 .right {
-    float: right
+    float: right;
+    margin-left: 0.5rem
 }

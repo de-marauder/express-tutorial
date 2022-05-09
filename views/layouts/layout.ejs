@@ -49,7 +49,10 @@
       src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"
     ></script>
 
-    <script defer src="https://unpkg.com/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.js"></script>
+    <script
+      defer
+      src="https://unpkg.com/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.js"
+    ></script>
     <script defer src="https://unpkg.com/filepond/dist/filepond.js"></script>
 
     <script defer src="/javascript/index.js"></script>
@@ -58,14 +61,13 @@
     <title>Zombrary</title>
   </head>
   <body class="container">
-    <%- include('../partials/header.ejs') %> 
-    <hr>
+    <%- include('../partials/header.ejs') %>
+    <hr />
     <div class="content-container">
-      <%-include('../partials/error.ejs') %> 
-      <%- body %> 
+      <div><%-include('../partials/error.ejs') %> <%- body %></div>
     </div>
-      <%-include('../partials/footer.ejs') %>
-    </body>
- 
+    <%-include('../partials/footer.ejs') %>
+  </body>
+
   <script defer src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
 </html>

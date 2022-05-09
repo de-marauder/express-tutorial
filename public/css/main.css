@@ -6,9 +6,9 @@
 @import url(./sharedstyles/authors.css);
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -22,10 +22,32 @@ body {
 }
 
 .container {
-    max-width: 1000px;
-    margin: 0 1rem
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .content-container {
-    margin: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem;
+  width: 90%;
+}
+
+.filepond--panel-root {
+  background-color: var(--text-color);
+  color: var(--background-color-dark);
+}
+.filepond--label-action {
+  color: var(--background-color-dark);
+}
+.filepond--label-action:hover {
+  color: var(--background-color-light);
+}
+.filepond--drop-label label {
+  color: var(--background-color-light);
+}
+.filepond--root .filepond--credits[style] {
+  display: none;
 }
