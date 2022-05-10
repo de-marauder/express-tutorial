@@ -37,11 +37,6 @@
     gap: 1rem
 }
 
-.book-full-details {
-    max-width: 400px;
-    margin-bottom: 2rem;
-}
-
 .detail {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

@@ -5,7 +5,9 @@
     </div>
     <div class="book-min-details">
       <p><strong><%= book.title %></strong></p>
-      <p><%= bookAuthors[id].name %></p>
+      <% if (locals.bookAuthors) { %> 
+        <p><%= bookAuthors[id].name %></p>
+        <% } %> 
     </div>
   </div>
 </a>

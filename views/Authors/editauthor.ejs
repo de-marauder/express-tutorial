@@ -3,7 +3,6 @@
 <form action="/authors/author/<%= author._id %>?_method=PUT" method="POST">
   <%- include('./_formFields', {author: author}) %> 
   <br />
-  <br />
-  <a href="/authors/author/<%= author._id %>">Cancel</a>
-  <button type="submit">Update</button>
+  <a class="btn btn-danger right" href="/authors/author/<%= author._id %>">Cancel</a>
+  <button class="btn btn-primary right" type="submit">Update</button>
 </form>

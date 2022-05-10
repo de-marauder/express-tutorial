@@ -12,8 +12,10 @@
     <h3>This author's books include:</h3>
 <% } else {%>
     <h3>This author has no books yet</h3>
-<% } %> 
+<% } %>
 
-<% books.forEach(book => { %>
-    <img src="<%= book.cover_src %>" />
+<div class="book-grid">
+    <% books.forEach(book => { %>
+    <%- include('../partials/min-det-book', {book: book}) %> 
 <% }) %>
+</div>
